@@ -342,8 +342,6 @@ func (nr *NetHTTPRequest) StartRequest() {
 	httpRequest := request.(*nhttp.Request)
 	carrier := opentracing.HTTPHeadersCarrier(httpRequest.Header)
 
-	nr.logger.Debugf("Carrier: %s", carrier)
-
 	wireContext, err := opentracing.GlobalTracer().Extract(opentracing.HTTPHeaders, carrier)
 
 	operation := httpRequest.URL.Path
